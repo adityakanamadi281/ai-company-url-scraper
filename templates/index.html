@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Intelligence Scraper</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">⬡ AI-Powered · Gemini 2.0 Flash</div>
+    <h1>Company <span>Intelligence</span> Scraper</h1>
+    <p>Paste a company URL · Extract structured business intelligence in seconds</p>
+  </div>
+
+  <!-- Two-column layout: Enrich + Live Result -->
+  <div class="layout">
+
+    <!-- LEFT: Enrich panel -->
+    <div class="panel">
+      <div class="panel-title">Enrich Company</div>
+
+      <div class="input-group">
+        <input
+          type="url"
+          id="urlInput"
+          class="url-input"
+          placeholder="https://example.com"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="enrichBtn" class="enrich-btn">
+          <span class="btn-label">▶ Enrich</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+
+      <div id="errorBox" class="error-box"></div>
+
+      <!-- Live result card -->
+      <div id="resultCard" class="result-card"></div>
+    </div>
+
+    <!-- RIGHT: Quick guide -->
+    <div class="panel">
+      <div class="panel-title">What Gets Extracted</div>
+      <div style="display:grid;gap:0.6rem;">
+        <div class="field-row"><div class="field-label">website_name</div><div class="field-value" style="color:var(--muted)">Brand / site name from the homepage</div></div>
+        <div class="field-row"><div class="field-label">company_name</div><div class="field-value" style="color:var(--muted)">Full legal name if available</div></div>
+        <div class="field-row"><div class="field-label">address</div><div class="field-value" style="color:var(--muted)">Physical address from contact page</div></div>
+        <div class="field-row"><div class="field-label">mobile_number</div><div class="field-value" style="color:var(--muted)">Phone number if explicitly listed</div></div>
+        <div class="field-row"><div class="field-label">mail</div><div class="field-value" style="color:var(--muted)">All email addresses found on site</div></div>
+        <div class="field-row"><div class="field-label">core_service</div><div class="field-value" style="color:var(--muted)">Primary offering in one sentence</div></div>
+        <div class="field-row"><div class="field-label">target_customer</div><div class="field-value" style="color:var(--muted)">Who they serve</div></div>
+        <div class="field-row"><div class="field-label">probable_pain_point</div><div class="field-value" style="color:var(--muted)">Customer problem they solve</div></div>
+        <div class="field-row">
+          <div class="field-label" style="color:var(--teal)">outreach_opener ✦</div>
+          <div class="field-value" style="color:var(--muted)">Personalized 2-sentence cold opener</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /layout -->
+
+  <!-- Full-width Results section -->
+  <div class="results-full panel" style="margin-top:1.5rem;">
+    <div class="results-header">
+      <div class="results-meta">
+        <div class="panel-title" style="margin-bottom:0">All Results</div>
+        <span id="countBadge" class="count-badge">0 records</span>
+      </div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+        <div class="view-toggle">
+          <button id="btnCards" class="toggle-btn active" onclick="toggleView('cards')">Cards</button>
+          <button id="btnTable" class="toggle-btn" onclick="toggleView('table')">Table</button>
+        </div>
+        <button class="refresh-btn" onclick="loadResults()">↺ Refresh</button>
+      </div>
+    </div>
+
+    <!-- Cards view -->
+    <div id="cardsView">
+      <div class="empty-state"><div class="icon">◎</div><p>No companies enriched yet. Submit a URL above.</p></div>
+    </div>
+
+    <!-- Table view -->
+    <div id="tableView" class="hidden">
+      <div class="empty-state"><div class="icon">◎</div><p>No companies enriched yet. Submit a URL above.</p></div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script src="/static/app.js"></script>
+</body>
+</html>
